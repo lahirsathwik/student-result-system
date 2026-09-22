@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Admin Login</h1>
+
+        <p class="subtitle">Student Result Management System</p>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+            >
+
+            <button onclick="adminLogin()">
+                Login
+            </button>
+
+        </div>
+
+        <div id="loginMessage"></div>
+
+    </div>
+
+    <script>
+        async function adminLogin() {
+
+            const username =
+                document.getElementById("username").value;
+
+            const password =
+                document.getElementById("password").value;
+
+            const message =
+                document.getElementById("loginMessage");
+
+            const response = await fetch("/api/login", {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded"
+                },
+
+                body:
+                    "username=" +
+                    encodeURIComponent(username) +
+                    "&password=" +
+                    encodeURIComponent(password)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                message.innerHTML =
+                    "<p>Login successful!</p>";
+
+                window.location.href =
+                    "admin-dashboard.html";
+            } else {
+                message.innerHTML =
+                    "<p>" + data.message + "</p>";
+            }
+        }
+    </script>
+
+</body>
+</html>

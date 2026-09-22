@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 750px;
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+h1 {
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+h2 {
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2563eb;
+}
+
+button {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.search-box input {
+    margin-bottom: 0;
+}
+
+#result,
+#message,
+#loginMessage {
+    margin-top: 25px;
+}
+
+.result-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: left;
+}
+
+.result-card p {
+    margin: 10px 0;
+    color: #334155;
+}
+
+.result-card hr {
+    margin: 18px 0;
+    border: none;
+    border-top: 1px solid #cbd5e1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
+.footer-text {
+    margin-top: 30px;
+    color: #94a3b8;
+    font-size: 13px;
+}

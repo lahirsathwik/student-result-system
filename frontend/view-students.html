@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Students</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>All Students</h1>
+
+        <p class="subtitle">
+            Student Result Management System
+        </p>
+
+        <div id="studentTable">
+            Loading students...
+        </div>
+
+        <br>
+
+        <button onclick="location.href='admin-dashboard.html'">
+            Back to Dashboard
+        </button>
+
+    </div>
+
+    <script>
+
+        async function loadStudents() {
+
+            const tableDiv =
+                document.getElementById("studentTable");
+
+            try {
+
+                const response =
+                    await fetch("/api/students");
+
+                const students =
+                    await response.json();
+
+                if (students.length === 0) {
+
+                    tableDiv.innerHTML =
+                        "<p>No students found.</p>";
+
+                    return;
+                }
+
+                let html = `
+                    <table border="1" cellpadding="10"
+                           style="width:100%; border-collapse:collapse;">
+
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Name</th>
+                            <th>Total</th>
+                            <th>Percentage</th>
+                            <th>Grade</th>
+                            <th>Result</th>
+                        </tr>
+                `;
+
+                students.forEach(student => {
+
+                    html += `
+                        <tr>
+                            <td>${student.roll}</td>
+                            <td>${student.name}</td>
+                            <td>${student.total}</td>
+                            <td>${student.percentage}%</td>
+                            <td>${student.grade}</td>
+                            <td>${student.result}</td>
+                        </tr>
+                    `;
+
+                });
+
+                html += "</table>";
+
+                tableDiv.innerHTML = html;
+
+            } catch (error) {
+
+                tableDiv.innerHTML =
+                    "<p>Cannot connect to C++ backend.</p>";
+
+            }
+        }
+
+        loadStudents();
+
+    </script>
+
+</body>
+
+</html>

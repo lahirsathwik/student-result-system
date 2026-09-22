@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delete Student</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Delete Student</h1>
+
+        <p class="subtitle">
+            Enter the roll number of the student
+        </p>
+
+        <input
+            type="text"
+            id="roll"
+            placeholder="Roll Number"
+        >
+
+        <br><br>
+
+        <button onclick="deleteStudent()">
+            Delete Student
+        </button>
+
+        <div id="message"></div>
+
+        <br>
+
+        <button onclick="location.href='admin-dashboard.html'">
+            Back to Dashboard
+        </button>
+
+    </div>
+
+    <script>
+
+        async function deleteStudent() {
+
+            const roll =
+                document.getElementById("roll").value.trim();
+
+            const message =
+                document.getElementById("message");
+
+            if (roll === "") {
+
+                message.innerHTML =
+                    "<p>Please enter a roll number.</p>";
+
+                return;
+            }
+
+            const data = new URLSearchParams();
+
+            data.append("roll", roll);
+
+            const response = await fetch("/api/delete", {
+                method: "POST",
+                body: data
+            });
+
+            const result = await response.json();
+
+            message.innerHTML =
+                "<p>" + result.message + "</p>";
+        }
+
+    </script>
+
+</body>
+
+</html>

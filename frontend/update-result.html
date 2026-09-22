@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update Result</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Update Student Result</h1>
+
+        <p class="subtitle">
+            Enter the student details
+        </p>
+
+        <input type="text" id="roll" placeholder="Roll Number">
+        <br><br>
+
+        <input type="text" id="name" placeholder="Student Name">
+        <br><br>
+
+        <input type="number" id="c" placeholder="C Marks">
+        <br><br>
+
+        <input type="number" id="cpp" placeholder="C++ Marks">
+        <br><br>
+
+        <input type="number" id="python" placeholder="Python Marks">
+        <br><br>
+
+        <input type="number" id="dbms" placeholder="DBMS Marks">
+        <br><br>
+
+        <input type="number" id="ai" placeholder="AI Marks">
+        <br><br>
+
+        <button onclick="updateStudent()">
+            Update Result
+        </button>
+
+        <div id="message"></div>
+
+        <br>
+
+        <button onclick="location.href='admin-dashboard.html'">
+            Back to Dashboard
+        </button>
+
+    </div>
+<script>
+
+async function updateStudent() {
+
+    const data = new URLSearchParams();
+
+    data.append("roll",
+        document.getElementById("roll").value);
+
+    data.append("name",
+        document.getElementById("name").value);
+
+    data.append("c",
+        document.getElementById("c").value);
+
+    data.append("cpp",
+        document.getElementById("cpp").value);
+
+    data.append("python",
+        document.getElementById("python").value);
+
+    data.append("dbms",
+        document.getElementById("dbms").value);
+
+    data.append("ai",
+        document.getElementById("ai").value);
+
+    const response = await fetch("/api/update", {
+        method: "POST",
+        body: data
+    });
+
+    const result = await response.json();
+
+    document.getElementById("message").innerHTML =
+        "<p>" + result.message + "</p>";
+}
+
+</script>
+</body>
+
+</html>
