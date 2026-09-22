@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include <vector>
 #include <iomanip>
@@ -422,10 +423,16 @@ server.Post("/api/delete", [](const httplib::Request& req,
     });
     server.set_mount_point("/", "../");
 
-    cout << "Student Result System Backend Started!" << endl;
-    cout << "Server running at http://localhost:8080" << endl;
+cout << "Student Result System Backend Started!" << endl;
 
-    server.listen("localhost", 8080);
+int port = 10000;
+
+if (getenv("PORT")) {
+    port = stoi(getenv("PORT"));
+}
+cout << "Server running on port " << port << endl;
+
+server.listen("0.0.0.0", port);
 
     return 0;
 }
