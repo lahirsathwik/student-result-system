@@ -230,7 +230,13 @@ server.Get("/api/students", [](const httplib::Request& req,
         string grade = getGrade(percentage);
 
         string result =
-            (grade == "F") ? "FAIL" : "PASS";
+    (student.c >= 35 &&
+     student.cpp >= 35 &&
+     student.python >= 35 &&
+     student.dbms >= 35 &&
+     student.ai >= 35)
+    ? "PASS"
+    : "FAIL";
 
         json += "{";
         json += "\"roll\":\"" + student.roll + "\",";
@@ -392,7 +398,13 @@ server.Post("/api/delete", [](const httplib::Request& req,
                 string grade = getGrade(percentage);
 
                 string result =
-                    (grade == "F") ? "FAIL" : "PASS";
+    (student.c >= 35 &&
+     student.cpp >= 35 &&
+     student.python >= 35 &&
+     student.dbms >= 35 &&
+     student.ai >= 35)
+    ? "PASS"
+    : "FAIL";
 
                 string json =
                     "{"
